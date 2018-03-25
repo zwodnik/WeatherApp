@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         request.enqueue(object : Callback<CurrentWeatherResponse> {
             override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                 response.body()?.let { weatherResponse ->
-                    dailyDegree.text = "${weatherResponse.main.temperature.toInt()} °C"
-                    val weatherIcon = weatherResponse.description[0].weatherIcon
-                    weather_icon.setIconResource(getString(weatherIcon))
+                    currentTempText.text = "${weatherResponse.main.temperature.toInt()} °C"
+                    weather_icon.setIconResource(getString(weatherResponse.description[0].weatherIcon))
+                    weatherDetailsText.text = weatherResponse.description[0].description
                 }
             }
 
