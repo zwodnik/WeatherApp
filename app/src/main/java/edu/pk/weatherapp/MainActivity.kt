@@ -1,16 +1,15 @@
 package edu.pk.weatherapp
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import edu.pk.weatherapp.api.RestAPI
-import edu.pk.weatherapp.model.WeatherDescription
-import edu.pk.weatherapp.model.WeatherResponse
+import edu.pk.weatherapp.model.CurrentWeatherResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -22,10 +21,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     val weatherApi = RestAPI().openWeatherApi
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        drawForecast()
+        drawCurrentWeather()
 
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
@@ -42,23 +40,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-
-
     }
 
-    private fun drawForecast() {
-        val dailyForecastRequest = weatherApi.dailyForecast("Krakow", 3)
+    private fun drawCurrentWeather() {
+        val request = weatherApi.currentWeather("Krakow")
 
-        dailyForecastRequest.enqueue(object : Callback<WeatherResponse> {
-            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+        request.enqueue(object : Callback<CurrentWeatherResponse> {
+            override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                 response.body()?.let { weatherResponse ->
-                    dailyDegree.text = "${weatherResponse.forecast[0].temperature.dayTemperature.toInt()} °C"
-                    val weatherIcon = weatherResponse.forecast[0].description[0].weatherIcon
+                    dailyDegree.text = "${weatherResponse.main.temperature.toInt()} °C"
+                    val weatherIcon = weatherResponse.description[0].weatherIcon
                     weather_icon.setIconResource(getString(weatherIcon))
                 }
             }
 
-            override fun onFailure(call: Call<WeatherResponse>?, t: Throwable) {
+            override fun onFailure(call: Call<CurrentWeatherResponse>?, t: Throwable) {
                 t.printStackTrace()
             }
         })
