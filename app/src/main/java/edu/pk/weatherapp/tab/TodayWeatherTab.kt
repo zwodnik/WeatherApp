@@ -31,7 +31,9 @@ class TodayWeatherTab : Fragment() {
                 response.body()?.let { weatherResponse ->
                     currentTempText.text = "${weatherResponse.main.temperature.toInt()} °C"
                     weather_icon.setIconResource(getString(weatherResponse.description[0].weatherIcon))
-                    weatherDetailsText.text = weatherResponse.description[0].description
+                    weatherDetailsText.text = weatherResponse.description[0].description.capitalize()
+                    sunRiseText.text = weatherResponse.sun.sunRiseFormattedString
+                    sunSetText.text = weatherResponse.sun.sunSetFormattedString
                 }
             }
 

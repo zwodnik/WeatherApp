@@ -4,4 +4,5 @@ import com.squareup.moshi.Json
 
 
 data class City(@Json(name = "name") var cityName : String,
+                @Json(name = "sun") var sun : Sun?,
                 @Json(name = "country") var country : String)
