@@ -2,36 +2,42 @@ package edu.pk.weatherapp
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
+import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import edu.pk.weatherapp.api.RestAPI
-import edu.pk.weatherapp.model.CurrentWeatherResponse
+import edu.pk.weatherapp.tab.TodayWeatherTab
+import edu.pk.weatherapp.tab.ForecastWeatherTab
+import edu.pk.weatherapp.tab.OtherTab
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    val weatherApi = RestAPI().openWeatherApi
+    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+
+    var currentWeatherTab = TodayWeatherTab()
+    var forecastWeatherTab = ForecastWeatherTab()
+    var otherTab = OtherTab()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        drawCurrentWeather()
 
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "todo", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+
+        // Set up the ViewPager with the sections adapter.
+        container.adapter = mSectionsPagerAdapter
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -40,24 +46,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-    }
-
-    private fun drawCurrentWeather() {
-        val request = weatherApi.currentWeather("Krakow")
-
-        request.enqueue(object : Callback<CurrentWeatherResponse> {
-            override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
-                response.body()?.let { weatherResponse ->
-                    currentTempText.text = "${weatherResponse.main.temperature.toInt()} °C"
-                    weather_icon.setIconResource(getString(weatherResponse.description[0].weatherIcon))
-                    weatherDetailsText.text = weatherResponse.description[0].description
-                }
-            }
-
-            override fun onFailure(call: Call<CurrentWeatherResponse>?, t: Throwable) {
-                t.printStackTrace()
-            }
-        })
     }
 
     override fun onBackPressed() {
@@ -109,5 +97,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+
+    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+        override fun getItem(position: Int): Fragment {
+            return when (position) {
+                0 -> currentWeatherTab
+                1 -> forecastWeatherTab
+                2 -> otherTab
+                else -> currentWeatherTab
+            }
+        }
+
+        override fun getCount(): Int {
+            return 3
+        }
+    }
+
+    fun reloadTabs() {
+        currentWeatherTab = TodayWeatherTab()
+        forecastWeatherTab = ForecastWeatherTab()
+        otherTab = OtherTab()
     }
 }
