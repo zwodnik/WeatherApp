@@ -7,6 +7,7 @@
     tools:context="edu.pk.weatherapp.tab.TodayWeatherTab">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -126,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/colorText"
+                    android:textSize="@dimen/detail_weather_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -143,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/colorText"
+                    android:textSize="@dimen/detail_weather_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -170,6 +173,177 @@
 
         </LinearLayout>
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                style="@style/Divider"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
+
+
+    <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/choice_grid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        grid:alignmentMode="alignBounds"
+        grid:columnCount="3"
+        grid:rowOrderPreserved="false"
+        grid:useDefaultMargins="true">
+
+        <TextView
+            android:id="@+id/pressureLabelText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/pressure"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/maxTemperatureLabelText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/max_temperature"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/minTemperatureLabelText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/min_temperature"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/pressureText"
+            android:layout_width="0dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="Presure"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/minTemperatureText"
+            android:layout_width="0dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="min"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/maxTemperatureText"
+            android:layout_width="0dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="max tem"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/humidityLabelText"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:text="@string/humidity"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/windDirectionLabelText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/wind_direction"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/windSpeedLabelText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/wind_speed"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/humidityText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/humidity"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/windDirectionText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="windDirection"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/windSpeedText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="windSpeed"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+
+    </android.support.v7.widget.GridLayout>
+
+
+
 
 </android.support.constraint.ConstraintLayout>
