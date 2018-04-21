@@ -49,84 +49,60 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="16:00"
-                android:textSize="16dp"
                 android:textColor="@color/colorText"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/itemDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorLightAccent"
-                android:textStyle="bold"
                 android:layout_weight="1"
                 android:text="No data"
-                android:textSize="16dp" />
+                android:textColor="@color/colorLightAccent"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/itemWind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/colorText"
                 android:text="Wind: 0 m/s"
+                android:textColor="@color/colorText"
                 android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorText"
                 android:text="Pressure: 0 hpa"
+                android:textColor="@color/colorText"
                 android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorText"
                 android:text="Humidity: 0 %"
+                android:textColor="@color/colorText"
                 android:textSize="16dp" />
         </LinearLayout>
 
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="60dp"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/itemTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="0 °C"
-                android:textColor="@color/colorLightAccent"
-                android:textSize="@dimen/temperature_forecast_font_size"
-                grid:layout_columnWeight="1"
-                grid:layout_constraintBottom_toBottomOf="parent"
-                grid:layout_constraintEnd_toEndOf="parent"
-                grid:layout_constraintStart_toStartOf="parent"
-                grid:layout_constraintTop_toTopOf="parent"
-                grid:layout_gravity="fill_horizontal" />
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <com.github.pwittchen.weathericonview.WeatherIconView
                 android:id="@+id/itemIcon"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 app:weatherIconColor="@color/colorText"
@@ -138,7 +114,29 @@
                 grid:layout_constraintStart_toStartOf="parent"
                 grid:layout_constraintTop_toTopOf="parent"
                 grid:layout_gravity="fill_horizontal" />
-        </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/itemTemperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0 °C"
+                android:textColor="@color/colorLightAccent"
+                android:textSize="@dimen/temperature_forecast_font_size"
+                grid:layout_columnWeight="1"
+                grid:layout_constraintBottom_toBottomOf="parent"
+                grid:layout_constraintEnd_toEndOf="parent"
+                grid:layout_constraintHorizontal_bias="0.93"
+                grid:layout_constraintStart_toStartOf="parent"
+                grid:layout_constraintTop_toTopOf="parent"
+                grid:layout_gravity="fill_horizontal" />
+
+        </LinearLayout>
 
 
     </android.support.v7.widget.GridLayout>
