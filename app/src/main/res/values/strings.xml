@@ -5,6 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_search_city">Search city</string>
+    <string name="action_reload">Reload</string>
+    <string name="action_detect_location">Detect location</string>
     <string name="temperature_degrees_celsius">%.0f°C</string>
 
     <string name="tab_today">Today</string>
@@ -23,6 +26,18 @@
     <string name="wind_speed_value">%.0fm/s</string>
     <string name="wind_speed_value_with_label">Wind speed: %.0fm/s</string>
     <string name="wind_direction">Wind direction</string>
-    <string name="wind_direction_value">%d°</string>
+    <string name="wind_direction_value">%.0f°</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="getting_location">Getting your location …</string>
+
+
+
+
+    <string name="location_settings">Location Settings</string>
+    <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
+    <string name="location_settings_button">Settings</string>
+
 
 </resources>

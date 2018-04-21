@@ -12,18 +12,29 @@ import kotlinx.android.synthetic.main.today_weather_tab.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import edu.pk.weatherapp.MainActivity
+
+
 
 class TodayWeatherTab : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.today_weather_tab, container, false)
-        drawCurrentWeather()
+        val main = activity as MainActivity
+        calculateCurrentWeather(main.currentCity)
         return rootView
     }
 
-    private fun drawCurrentWeather() {
-        val request = RestAPI.openWeatherApi.currentWeather("Krakow")
+    fun reloadData(newCity: String) {
+        calculateCurrentWeather(newCity)
+    }
 
+    fun reloadData(latitude: Double, longitude: Double) {
+        calculateCurrentWeather(latitude, longitude)
+    }
+
+
+    private fun enqueueRequest(request: Call<CurrentWeatherResponse>) {
         request.enqueue(object : Callback<CurrentWeatherResponse> {
             override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                 response.body()?.let { weatherResponse ->
@@ -38,6 +49,9 @@ class TodayWeatherTab : Fragment() {
                     humidityText.text = getString(R.string.humidity_value, weatherResponse.main.humidity)
                     windDirectionText.text = getString(R.string.wind_direction_value, weatherResponse.wind.deg)
                     windSpeedText.text = getString(R.string.wind_speed_value, weatherResponse.wind.speed)
+
+                    val main = activity as MainActivity
+                    main.currentCity = weatherResponse.cityName
                 }
             }
 
@@ -46,5 +60,14 @@ class TodayWeatherTab : Fragment() {
             }
         })
     }
+
+    private fun calculateCurrentWeather(city: String) {
+        enqueueRequest(RestAPI.openWeatherApi.currentWeatherByCity(city))
+    }
+
+    private fun calculateCurrentWeather(latitude: Double, longitude: Double) {
+        enqueueRequest(RestAPI.openWeatherApi.currentWeatherByGgraphicCoordinates(latitude, longitude))
+    }
+
 
 }
