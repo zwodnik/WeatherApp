@@ -6,11 +6,9 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.Settings
@@ -45,6 +43,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private var locationManager: LocationManager? = null
     private var progressDialog: ProgressDialog? = null
+    private var detectLocation = false
+    private var currentLatitude = 0.0
+    private var currentLongitude = 0.0
 
 
     var currentCity: String by Delegates.observable(Properties.DEFAULT_CITY) { _, _, new ->
@@ -82,11 +83,11 @@ class MainActivity : AppCompatActivity(), LocationListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_language_english -> {
-                updateResources("en")
+                changeLanguage("en")
                 true
             }
             R.id.action_language_polish -> {
-                updateResources("pl")
+                changeLanguage("pl")
                 true
             }
             R.id.action_search -> {
@@ -123,6 +124,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     }
 
     private fun searchCities() {
+        detectLocation = false
         val alert = AlertDialog.Builder(this)
         alert.setTitle(this.getString(R.string.action_search_city))
         val input = EditText(this)
@@ -153,6 +155,8 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     private fun reloadData(latitude: Double?, longitude: Double?) {
         if (latitude != null && longitude != null) {
+            currentLatitude = latitude
+            currentLongitude = longitude
             currentWeatherTab.reloadData(latitude, longitude)
             forecastWeatherTab.reloadData(latitude, longitude)
         }
@@ -161,6 +165,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     private fun detectLocation() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locationManager?.let { locationManager ->
+            detectLocation = true
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSIONS_ACCESS_FINE_LOCATION)
@@ -224,15 +229,22 @@ class MainActivity : AppCompatActivity(), LocationListener {
     override fun onProviderDisabled(provider: String?) {
     }
 
-    private fun updateResources(language: String) {
-        val locale = Locale(language)
-        Locale.setDefault(locale)
-        val res = applicationContext.resources
-        val config = Configuration(res.configuration)
-        config.setLocale(locale)
-        Properties.DEFAULT_LANGUAGE_CODE = language
-        reloadData(currentCity)
-        applicationContext.createConfigurationContext(config)
-    }
+    private fun changeLanguage(lang: String) {
+        val myLocale = Locale(lang)
+        val res = resources
+        val dm = res.displayMetrics
+        val conf = res.configuration
+        conf.setLocale(myLocale)
+        res.updateConfiguration(conf, dm)
+        Properties.DEFAULT_LANGUAGE_CODE = lang
+        if (detectLocation) {
+            reloadData(currentLatitude, currentLongitude)
+        } else {
+            reloadData(currentCity)
+        }
 
+        val refresh = Intent(this, MainActivity::class.java)
+        startActivity(refresh)
+        finish()
+    }
 }

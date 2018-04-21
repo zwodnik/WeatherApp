@@ -9,6 +9,11 @@ import edu.pk.weatherapp.model.CurrentWeatherResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
+import android.util.DisplayMetrics
+
+
 
 /**
  * Implementation of App Widget functionality.
