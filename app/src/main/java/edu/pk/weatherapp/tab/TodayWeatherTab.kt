@@ -15,8 +15,6 @@ import retrofit2.Response
 
 class TodayWeatherTab : Fragment() {
 
-    val weatherApi = RestAPI().openWeatherApi
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.today_weather_tab, container, false)
         drawCurrentWeather()
@@ -24,12 +22,12 @@ class TodayWeatherTab : Fragment() {
     }
 
     private fun drawCurrentWeather() {
-        val request = weatherApi.currentWeather("Krakow")
+        val request = RestAPI.openWeatherApi.currentWeather("Krakow")
 
         request.enqueue(object : Callback<CurrentWeatherResponse> {
             override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                 response.body()?.let { weatherResponse ->
-                    currentTempText.text =  getString(R.string.temperature_degrees_celsius, weatherResponse.main.temperature.toInt())
+                    currentTempText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.temperature)
                     weather_icon.setIconResource(getString(weatherResponse.description[0].weatherIcon))
                     weatherDetailsText.text = weatherResponse.description[0].description.capitalize()
                     sunRiseText.text = weatherResponse.sun.sunRiseFormattedString

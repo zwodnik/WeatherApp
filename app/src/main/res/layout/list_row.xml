@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
+
+    <View
+        android:id="@+id/lineView"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="?android:attr/listDivider" />
+
+    <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/choice_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        grid:alignmentMode="alignBounds"
+        grid:columnCount="3"
+        grid:rowOrderPreserved="false"
+        grid:useDefaultMargins="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal">
+
+            <TextView
+                android:id="@+id/itemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:00"
+                android:textSize="16dp"
+                android:textColor="@color/colorText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/itemDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:text="No data"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/itemWind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorText"
+                android:text="Wind: 0 m/s"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/itemPressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:text="Pressure: 0 hpa"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/itemHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:text="Humidity: 0 %"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/itemTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="0 °C"
+                android:textColor="@color/colorText"
+                android:textSize="22dp"
+                grid:layout_columnWeight="1"
+                grid:layout_constraintBottom_toBottomOf="parent"
+                grid:layout_constraintEnd_toEndOf="parent"
+                grid:layout_constraintStart_toStartOf="parent"
+                grid:layout_constraintTop_toTopOf="parent"
+                grid:layout_gravity="fill_horizontal" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+
+            <com.github.pwittchen.weathericonview.WeatherIconView
+                android:id="@+id/itemIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:weatherIconColor="@color/colorText"
+                app:weatherIconResource="@string/wi_day_sunny_overcast"
+                app:weatherIconSize="60"
+                grid:layout_columnWeight="1"
+                grid:layout_constraintBottom_toBottomOf="parent"
+                grid:layout_constraintEnd_toEndOf="parent"
+                grid:layout_constraintStart_toStartOf="parent"
+                grid:layout_constraintTop_toTopOf="parent"
+                grid:layout_gravity="fill_horizontal" />
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>

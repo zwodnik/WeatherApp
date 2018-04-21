@@ -6,15 +6,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class RestAPI {
-
-    private val apiClient = OkHttpClient.Builder().addInterceptor(OpenWeatherInterceptor()).build()
+object RestAPI {
 
     val openWeatherApi: OpenWeatherAPI
 
-    companion object {
-        val BASE_URL = "http://api.openweathermap.org/data/2.5/"
-    }
+    private val apiClient = OkHttpClient.Builder().addInterceptor(OpenWeatherInterceptor()).build()
+    private const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
 
     init {
         val retrofit = Retrofit.Builder()

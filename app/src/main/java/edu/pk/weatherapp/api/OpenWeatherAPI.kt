@@ -9,8 +9,8 @@ import retrofit2.http.Query
 interface OpenWeatherAPI {
 
     companion object {
-        val DEFAULT_FORECAST_DAY = 3
-        val DEFAULT_LANGUAGE_CODE = "pl"
+        const val DEFAULT_FORECAST_DAY = 16
+        const val DEFAULT_LANGUAGE_CODE = "pl"
     }
 
     @GET("forecast/daily/")

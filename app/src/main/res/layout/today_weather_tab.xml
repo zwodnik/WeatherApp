@@ -228,6 +228,16 @@
             grid:layout_gravity="fill_horizontal" />
 
         <TextView
+            android:id="@+id/minTemperatureLabelText"
+            android:layout_width="0dp"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/detail_weather_text_size"
+            android:gravity="center"
+            android:text="@string/min_temperature"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+        <TextView
             android:id="@+id/maxTemperatureLabelText"
             android:layout_width="0dp"
             android:textColor="@color/colorText"
@@ -237,15 +247,6 @@
             grid:layout_columnWeight="1"
             grid:layout_gravity="fill_horizontal" />
 
-        <TextView
-            android:id="@+id/minTemperatureLabelText"
-            android:layout_width="0dp"
-            android:textColor="@color/colorText"
-            android:textSize="@dimen/detail_weather_text_size"
-            android:gravity="center"
-            android:text="@string/min_temperature"
-            grid:layout_columnWeight="1"
-            grid:layout_gravity="fill_horizontal" />
 
         <TextView
             android:id="@+id/pressureText"
@@ -259,22 +260,23 @@
             grid:layout_gravity="fill_horizontal" />
 
         <TextView
-            android:id="@+id/minTemperatureText"
-            android:layout_width="0dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:text="min"
-            android:textColor="@color/colorLightAccent"
-            android:textSize="@dimen/detail_weather_text_size"
-            grid:layout_columnWeight="1"
-            grid:layout_gravity="fill_horizontal" />
-
-        <TextView
             android:id="@+id/maxTemperatureText"
             android:layout_width="0dp"
             android:layout_marginBottom="30dp"
             android:gravity="center"
             android:text="max tem"
+            android:textColor="@color/colorLightAccent"
+            android:textSize="@dimen/detail_weather_text_size"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal" />
+
+
+        <TextView
+            android:id="@+id/minTemperatureText"
+            android:layout_width="0dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="min"
             android:textColor="@color/colorLightAccent"
             android:textSize="@dimen/detail_weather_text_size"
             grid:layout_columnWeight="1"

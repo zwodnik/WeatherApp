@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="temperature_degrees_celsius">%d°C</string>
+    <string name="temperature_degrees_celsius">%.0f°C</string>
 
     <string name="tab_today">Today</string>
     <string name="tab_forecast">Forecast</string>
@@ -14,11 +14,14 @@
     <string name="min_temperature">Min temp</string>
     <string name="max_temperature">Max temp</string>
     <string name="pressure">Pressure</string>
-    <string name="pressure_value">%dhPa</string>
+    <string name="pressure_value">%.0fhPa</string>
+    <string name="pressure_value_with_label">Pressure: %.0fhPa</string>
     <string name="humidity">Humidity</string>
-    <string name="humidity_value">%d%%</string>
+    <string name="humidity_value">%.0f%%</string>
+    <string name="humidity_value_with_label">Humidity: %.0f%%</string>
     <string name="wind_speed">Wind speed</string>
     <string name="wind_speed_value">%.0fm/s</string>
+    <string name="wind_speed_value_with_label">Wind speed: %.0fm/s</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_value">%d°</string>
 
