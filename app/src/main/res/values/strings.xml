@@ -16,6 +16,8 @@
     <string name="language_polish">polish</string>
     <string name="language_english">english</string>
 
+    <string name="authors">Authors</string>
+
     <string name="min_temperature">Min temp</string>
     <string name="max_temperature">Max temp</string>
     <string name="pressure">Pressure</string>

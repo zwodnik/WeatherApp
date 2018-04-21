@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //changeLanguage(Properties.DEFAULT_LANGUAGE_CODE)
         val preferences = PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
         currentCity = preferences.getString("city", Properties.DEFAULT_CITY)
 
