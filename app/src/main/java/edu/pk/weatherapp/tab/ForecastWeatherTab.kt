@@ -11,9 +11,7 @@ import edu.pk.weatherapp.MainActivity
 import edu.pk.weatherapp.R
 import edu.pk.weatherapp.adapter.WeatherRecyclerAdapter
 import edu.pk.weatherapp.api.RestAPI
-import edu.pk.weatherapp.model.CurrentWeatherResponse
 import edu.pk.weatherapp.model.ForecastWeatherResponse
-import kotlinx.android.synthetic.main.today_weather_tab.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,7 +60,7 @@ class ForecastWeatherTab : Fragment() {
     }
 
     private fun calculateForecastWeather(recyclerView: RecyclerView, latitude: Double, longitude: Double) {
-        enqueueRequest(recyclerView, RestAPI.openWeatherApi.dailyForecastByGgraphicCoordinates(latitude, longitude))
+        enqueueRequest(recyclerView, RestAPI.openWeatherApi.dailyForecastByGraphicCoordinates(latitude, longitude))
     }
 
 

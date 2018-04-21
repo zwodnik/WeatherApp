@@ -18,15 +18,15 @@ class WeatherRecyclerAdapter(private val context: Context, private val itemList:
 
     override fun onBindViewHolder(customViewHolder: WeatherViewHolder, i: Int) {
         itemList?.get(i).let { item ->
-            customViewHolder.pressureText.text = context.getString(R.string.pressure_value_with_label, item?.pressure)
-            customViewHolder.humidityText.text = context.getString(R.string.humidity_value_with_label, item?.humidity)
-            customViewHolder.windSpeedText.text = context.getString(R.string.wind_speed_value_with_label, item?.windSpeed)
-            customViewHolder.dateText.text = item?.formatedDate
+            customViewHolder.pressureText.text = context.getString(R.string.pressure_value_with_label, item?.pressure)?: ""
+            customViewHolder.humidityText.text = context.getString(R.string.humidity_value_with_label, item?.humidity)?: ""
+            customViewHolder.windSpeedText.text = context.getString(R.string.wind_speed_value_with_label, item?.windSpeed)?: ""
+            customViewHolder.dateText.text = item?.formatedDate?: ""
             item?.description?.let {
                 customViewHolder.descriptionTExt.text = it[0].description.capitalize()
-                customViewHolder.weatherIcon.text = context.getString(it[0].weatherIcon)
+                customViewHolder.weatherIcon.text = context.getString(it[0].weatherIcon)?: ""
             }
-            customViewHolder.temperatureText.text = context.getString(R.string.temperature_degrees_celsius, item?.temperature?.dayTemperature)
+            customViewHolder.temperatureText.text = context.getString(R.string.temperature_degrees_celsius, item?.temperature?.dayTemperature)?: ""
         }
     }
 

@@ -14,12 +14,12 @@ interface OpenWeatherAPI {
     fun dailyForecastByCity(@Query("q") cityName : String, @Query("cnt") dayCount : Int = Properties.DEFAULT_FORECAST_DAY, @Query("lang") languageCode : String = Properties.DEFAULT_LANGUAGE_CODE) : Call<ForecastWeatherResponse>
 
     @GET("forecast/daily/")
-    fun dailyForecastByGgraphicCoordinates(@Query("lat") latitude : Double, @Query("lon") longitude : Double, @Query("cnt") dayCount : Int = Properties.DEFAULT_FORECAST_DAY, @Query("lang") languageCode : String = Properties.DEFAULT_LANGUAGE_CODE) : Call<ForecastWeatherResponse>
+    fun dailyForecastByGraphicCoordinates(@Query("lat") latitude : Double, @Query("lon") longitude : Double, @Query("cnt") dayCount : Int = Properties.DEFAULT_FORECAST_DAY, @Query("lang") languageCode : String = Properties.DEFAULT_LANGUAGE_CODE) : Call<ForecastWeatherResponse>
 
 
     @GET("weather")
     fun currentWeatherByCity(@Query("q") cityName : String, @Query("lang") languageCode : String = Properties.DEFAULT_LANGUAGE_CODE) : Call<CurrentWeatherResponse>
 
     @GET("weather")
-    fun currentWeatherByGgraphicCoordinates(@Query("lat") latitude : Double, @Query("lon") longitude : Double,  @Query("lang") languageCode : String = Properties.DEFAULT_LANGUAGE_CODE) : Call<CurrentWeatherResponse>
+    fun currentWeatherByGraphicCoordinates(@Query("lat") latitude : Double, @Query("lon") longitude : Double, @Query("lang") languageCode : String = Properties.DEFAULT_LANGUAGE_CODE) : Call<CurrentWeatherResponse>
 }

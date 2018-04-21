@@ -6,21 +6,20 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.Settings
-import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
@@ -31,9 +30,9 @@ import android.widget.EditText
 import edu.pk.weatherapp.tab.ForecastWeatherTab
 import edu.pk.weatherapp.tab.OtherTab
 import edu.pk.weatherapp.tab.TodayWeatherTab
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), LocationListener {
@@ -82,7 +81,14 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_language_english -> {
+                updateResources("en")
+                true
+            }
+            R.id.action_language_polish -> {
+                updateResources("pl")
+                true
+            }
             R.id.action_search -> {
                 searchCities()
                 true
@@ -95,7 +101,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 detectLocation()
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -159,7 +164,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSIONS_ACCESS_FINE_LOCATION)
-                } else{
+                } else {
                 }
             } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 progressDialog = ProgressDialog(this)
@@ -219,5 +224,15 @@ class MainActivity : AppCompatActivity(), LocationListener {
     override fun onProviderDisabled(provider: String?) {
     }
 
+    private fun updateResources(language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val res = applicationContext.resources
+        val config = Configuration(res.configuration)
+        config.setLocale(locale)
+        Properties.DEFAULT_LANGUAGE_CODE = language
+        reloadData(currentCity)
+        applicationContext.createConfigurationContext(config)
+    }
 
 }

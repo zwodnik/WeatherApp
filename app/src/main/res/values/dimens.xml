@@ -9,4 +9,10 @@
     <dimen name="detail_weather_text_size">18sp</dimen>
     <dimen name="small_weather_icon_size">16dp</dimen>
     <dimen name="temperature_forecast_font_size">30sp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">8dp</dimen>
 </resources>

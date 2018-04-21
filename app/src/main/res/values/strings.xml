@@ -13,6 +13,8 @@
     <string name="tab_today">Today</string>
     <string name="tab_forecast">Forecast</string>
     <string name="tab_other">Other</string>
+    <string name="language_polish">polish</string>
+    <string name="language_english">english</string>
 
     <string name="min_temperature">Min temp</string>
     <string name="max_temperature">Max temp</string>
@@ -33,11 +35,12 @@
     <string name="getting_location">Getting your location …</string>
 
 
-
-
     <string name="location_settings">Location Settings</string>
     <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
     <string name="location_settings_button">Settings</string>
+    <string name="default_city">Krakow</string>
+    <string name="city">City</string>
+    <string name="add_widget">Add widget</string>
 
 
 </resources>

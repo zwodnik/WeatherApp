@@ -38,17 +38,17 @@ class TodayWeatherTab : Fragment() {
         request.enqueue(object : Callback<CurrentWeatherResponse> {
             override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                 response.body()?.let { weatherResponse ->
-                    currentTempText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.temperature)
+                    currentTempText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.temperature)?: ""
                     weather_icon.setIconResource(getString(weatherResponse.description[0].weatherIcon))
                     weatherDetailsText.text = weatherResponse.description[0].description.capitalize()
                     sunRiseText.text = weatherResponse.sun.sunRiseFormattedString
                     sunSetText.text = weatherResponse.sun.sunSetFormattedString
-                    pressureText.text = getString(R.string.pressure_value, weatherResponse.main.pressure)
-                    minTemperatureText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.tempMin)
-                    maxTemperatureText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.tempMax)
-                    humidityText.text = getString(R.string.humidity_value, weatherResponse.main.humidity)
-                    windDirectionText.text = getString(R.string.wind_direction_value, weatherResponse.wind.deg)
-                    windSpeedText.text = getString(R.string.wind_speed_value, weatherResponse.wind.speed)
+                    pressureText.text = getString(R.string.pressure_value, weatherResponse.main.pressure)?: ""
+                    minTemperatureText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.tempMin)?: ""
+                    maxTemperatureText.text = getString(R.string.temperature_degrees_celsius, weatherResponse.main.tempMax)?: ""
+                    humidityText.text = getString(R.string.humidity_value, weatherResponse.main.humidity)?: ""
+                    windDirectionText.text = getString(R.string.wind_direction_value, weatherResponse.wind.deg)?: ""
+                    windSpeedText.text = getString(R.string.wind_speed_value, weatherResponse.wind.speed)?: ""
 
                     val main = activity as MainActivity
                     main.currentCity = weatherResponse.cityName
@@ -66,7 +66,7 @@ class TodayWeatherTab : Fragment() {
     }
 
     private fun calculateCurrentWeather(latitude: Double, longitude: Double) {
-        enqueueRequest(RestAPI.openWeatherApi.currentWeatherByGgraphicCoordinates(latitude, longitude))
+        enqueueRequest(RestAPI.openWeatherApi.currentWeatherByGraphicCoordinates(latitude, longitude))
     }
 
 
