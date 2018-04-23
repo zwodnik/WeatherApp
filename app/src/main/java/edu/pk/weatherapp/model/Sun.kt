@@ -5,6 +5,12 @@ import com.squareup.moshi.Json
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Opisuje stan naslonecznienia
+ * @constructor domyslny
+ * @property sunRiseFormattedString wschod slonca
+ * @property sunSetFormattedString zachod slonca
+ */
 data class Sun(@Json(name = "sunrise") var sunRiseUnixString: Long,
                @Json(name = "sunset") var sunSetUnixString: Long) {
 

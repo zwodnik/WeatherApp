@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import edu.pk.weatherapp.R
 
+/**
+ * Reprezentacja widoku dodatkowego okna
+ */
 class OtherTab : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

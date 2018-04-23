@@ -33,6 +33,9 @@ import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 import kotlin.properties.Delegates
 
+/**
+ * Glowna klasa aktywnosci
+ */
 class MainActivity : AppCompatActivity(), LocationListener {
 
     var currentWeatherTab = TodayWeatherTab()
@@ -124,6 +127,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
     }
 
+    /**
+     * Wyswietla komunikat z prosba o podanie nazwy miasta do wyszukania
+     */
     private fun searchCities() {
         detectLocation = false
         val alert = AlertDialog.Builder(this)
@@ -143,17 +149,30 @@ class MainActivity : AppCompatActivity(), LocationListener {
         alert.show()
     }
 
+    /**
+     * Jezeli nazwa nazwa miasta zostałą mnieniona dane sa przeladowywane
+     * @param result nazwa miasta
+     */
     private fun saveLocation(result: String) {
         if (currentCity != result) {
             reloadData(result)
         }
     }
 
+    /**
+     * Przeladowanie danych na podstawie zmiany nazwy miasta
+     * @param newCity nazwa miasta
+     */
     private fun reloadData(newCity: String) {
         currentWeatherTab.reloadData(newCity)
         forecastWeatherTab.reloadData(newCity)
     }
 
+    /**
+     * Przeladowanie danych na podstawie zmiany dlugosci i szerokosci geograficznej
+     * @param latitude szerokosc geograficzna
+     * @param longitude dlugosc geograficzna
+     */
     private fun reloadData(latitude: Double?, longitude: Double?) {
         if (latitude != null && longitude != null) {
             currentLatitude = latitude
@@ -163,6 +182,10 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
     }
 
+    /**
+     * Wykrycie lokalizacji uzytkownika na podstawie GPS. Jesli nie ma odpowienich uprawnien komunikat z prosba o nadanie uprawnien jest wyswietlany.
+     * Jezeli GPS jest wylaczony wyswietla sie stosowny komunikat
+     */
     private fun detectLocation() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locationManager?.let { locationManager ->
@@ -198,6 +221,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
     }
 
+    /**
+     * Wyswitla komunikat z informacja wlaczenia GPS
+     */
     private fun showLocationSettingsDialog() {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle(R.string.location_settings)
@@ -207,6 +233,10 @@ class MainActivity : AppCompatActivity(), LocationListener {
         alertDialog.show()
     }
 
+    /**
+     * Aktualizacja danych na podstawie zmiany lokalizacji
+     * @param location lokalizacja
+     */
     override fun onLocationChanged(location: Location?) {
         progressDialog?.hide()
         try {
@@ -230,6 +260,10 @@ class MainActivity : AppCompatActivity(), LocationListener {
     override fun onProviderDisabled(provider: String?) {
     }
 
+    /**
+     * Wywolywana w chwili zmiany jezyka na pasku menu
+     * @param lang kod jezyka
+     */
     private fun changeLanguage(lang: String) {
         val myLocale = Locale(lang)
         val res = resources

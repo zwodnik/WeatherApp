@@ -15,7 +15,9 @@ import retrofit2.Response
 import edu.pk.weatherapp.MainActivity
 
 
-
+/**
+ * Reprezentacja widoku przezentujacego pogode w danym dniu
+ */
 class TodayWeatherTab : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -25,10 +27,19 @@ class TodayWeatherTab : Fragment() {
         return rootView
     }
 
+    /**
+     * Przeladowanie danych na podstawie nazwy miasta
+     * @param newCity nazwa miasta
+     */
     fun reloadData(newCity: String) {
         calculateCurrentWeather(newCity)
     }
 
+    /**
+     * Przeladowanie danych na podstawie szerokosci i dlugosci geograficznej
+     * @param latitude szerokosc geograficzna
+     * @param longitude dlugosc geograficzna
+     */
     fun reloadData(latitude: Double, longitude: Double) {
         calculateCurrentWeather(latitude, longitude)
     }

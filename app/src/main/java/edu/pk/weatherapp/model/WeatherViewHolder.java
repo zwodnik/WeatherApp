@@ -8,7 +8,9 @@ import com.github.pwittchen.weathericonview.WeatherIconView;
 
 import edu.pk.weatherapp.R;
 
-
+/**
+ * Reprezentacja widoku
+ */
 public class WeatherViewHolder extends RecyclerView.ViewHolder {
     public TextView dateText;
     public TextView temperatureText;

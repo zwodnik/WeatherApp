@@ -3,7 +3,13 @@ package edu.pk.weatherapp.model
 import com.squareup.moshi.Json
 import edu.pk.weatherapp.R
 
-
+/**
+ * Pojedynczy opis pogody
+ * @constructor domyslny
+ * @property main nazwa
+ * @property description opis
+ * @property icon ikona
+ */
 class WeatherDescription(
         @Json(name = "main") var main: String,
         @Json(name = "description") var description: String,

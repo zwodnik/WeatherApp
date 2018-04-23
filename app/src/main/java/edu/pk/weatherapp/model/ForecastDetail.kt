@@ -4,7 +4,16 @@ import com.squareup.moshi.Json
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * Podstawowe parametry pogodowe wraz z data
+ * @constructor domyslny
+ * @property date data
+ * @property temperature temperatura
+ * @property pressure cisnienie
+ * @property tempMin temperatura minimalna
+ * @property tempMax temperatura maksymalna
+ * @property humidity wilgotnosc
+ */
 data class ForecastDetail(@Json(name = "dt") var date: Long,
                           @Json(name = "temp") var temperature: Temperature,
                           @Json(name = "weather") var description: List<WeatherDescription>,
