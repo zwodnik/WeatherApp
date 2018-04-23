@@ -1,0 +1,8 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+edu.pk.weatherapp
+edu.pk.weatherapp.adapter
+edu.pk.weatherapp.api
+edu.pk.weatherapp.model
+edu.pk.weatherapp.tab

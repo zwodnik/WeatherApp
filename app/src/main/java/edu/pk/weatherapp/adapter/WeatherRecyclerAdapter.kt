@@ -8,7 +8,9 @@ import edu.pk.weatherapp.R
 import edu.pk.weatherapp.model.ForecastDetail
 import edu.pk.weatherapp.model.WeatherViewHolder
 
-
+/**
+ * Klasa przechowujaca uchwyt do liste z pogoda na kolejne dni
+ */
 class WeatherRecyclerAdapter(private val context: Context, private val itemList: List<ForecastDetail>?) : RecyclerView.Adapter<WeatherViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): WeatherViewHolder {
@@ -16,6 +18,9 @@ class WeatherRecyclerAdapter(private val context: Context, private val itemList:
         return WeatherViewHolder(view)
     }
 
+    /**
+     * Binduje element prezentujacy pojedynczy dzien z lista w widoku
+     */
     override fun onBindViewHolder(customViewHolder: WeatherViewHolder, i: Int) {
         itemList?.get(i).let { item ->
             customViewHolder.pressureText.text = context.getString(R.string.pressure_value_with_label, item?.pressure)?: ""
@@ -30,6 +35,9 @@ class WeatherRecyclerAdapter(private val context: Context, private val itemList:
         }
     }
 
+    /**
+     * @return zwraca licze elementow listy
+     */
     override fun getItemCount(): Int {
         return itemList?.size ?: 0
     }

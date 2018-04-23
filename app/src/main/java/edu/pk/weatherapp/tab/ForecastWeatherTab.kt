@@ -16,7 +16,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
+/**
+ * Reprezentacja widoku przezentujacego pogode z danego miasta
+ */
 class ForecastWeatherTab : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,10 +31,19 @@ class ForecastWeatherTab : Fragment() {
         reloadData(main.currentCity)
     }
 
+    /**
+     * Przeladowanie danych na podstawie nazwy miasta
+     * @param newCity nazwa miasta
+     */
     fun reloadData(newCity: String) {
         view?.findViewById<RecyclerView>(R.id.recyclerView)?.let { calculateForecastWeather(it, newCity) }
     }
 
+    /**
+     * Przeladowanie danych na podstawie szerokosci i dlugosci geograficznej
+     * @param latitude szerokosc geograficzna
+     * @param longitude dlugosc geograficzna
+     */
     fun reloadData(latitude: Double, longitude: Double) {
         view?.findViewById<RecyclerView>(R.id.recyclerView)?.let { calculateForecastWeather(it, latitude, longitude) }
     }
